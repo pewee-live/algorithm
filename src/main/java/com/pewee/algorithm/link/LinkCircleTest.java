@@ -1,5 +1,8 @@
 package com.pewee.algorithm.link;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
+
+import java.util.HashMap;
 import org.junit.Test;
 
 /**
@@ -58,11 +61,52 @@ public class LinkCircleTest {
 		 * 快慢指针法
 		 * 2个指针相遇则有环
 		 */
+		System.out.println(point(head));
 		
 		
 		/**
 		 * 足迹法
 		 * 将路过的节点加入hash表,若有相同的节点加入说明有环
 		 */
+		System.out.println(trace(head));
+		
+	}
+	
+	/**
+	 * 足迹法
+	 * @param head
+	 * @return
+	 */
+	private boolean trace(MyLink<Integer> head) {
+		HashMap<MyLink<Integer>,Integer> hashMap = new HashMap<MyLink<Integer>,Integer>();
+		MyLink<Integer> tmp;
+		for(int i = 0;;i++) {
+			tmp = head.getNext();
+			if (hashMap.containsKey(tmp)) {
+				return true;
+			} else {
+				hashMap.put(tmp, i);
+			}
+		}
+	}
+
+	/**
+	 * 快慢指针法
+	 * @param head2
+	 */
+	private boolean point(MyLink<Integer> head) {
+		if(head.getNext() == null || head.getNext().getNext() == null) {
+			return false;
+		}
+		boolean iscontinue = true;
+		MyLink<Integer> fast = head,slow = head;
+		while(iscontinue) {
+			fast = fast.getNext().getNext();
+			slow = slow.getNext();
+			if(fast.getData().intValue() == slow.getData().intValue()) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
