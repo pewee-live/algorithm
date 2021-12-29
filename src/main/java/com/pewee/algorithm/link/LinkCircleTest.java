@@ -78,16 +78,22 @@ public class LinkCircleTest {
 	 * @return
 	 */
 	private boolean trace(MyLink<Integer> head) {
+		if(head == null || head.getNext() == null) {
+			return false;
+		}
 		HashMap<MyLink<Integer>,Integer> hashMap = new HashMap<MyLink<Integer>,Integer>();
-		MyLink<Integer> tmp;
-		for(int i = 0;;i++) {
-			tmp = head.getNext();
+		MyLink<Integer> tmp = head;
+		int i = 0;
+		while(tmp.getNext() != null) {
+			tmp = tmp.getNext();
 			if (hashMap.containsKey(tmp)) {
 				return true;
 			} else {
 				hashMap.put(tmp, i);
 			}
+			i++;
 		}
+		return false;
 	}
 
 	/**
