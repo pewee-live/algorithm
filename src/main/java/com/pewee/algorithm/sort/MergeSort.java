@@ -33,7 +33,7 @@ public class MergeSort {
 		 int x = i;int y = middle+1;int z = 0;
 		 //2个数组都有数据
 		 while(x <= middle && y <= k ) {
-			 if(arr[x] < arr[y]) {
+			 if(arr[x] <= arr[y]) {//相等的情况下把左边数组的数据优先放入,这样排序会稳定
 				 tmp[z] = arr[x];
 				 x++;
 			 } else {
