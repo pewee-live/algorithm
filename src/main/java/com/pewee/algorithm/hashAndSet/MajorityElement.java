@@ -3,7 +3,7 @@ package com.pewee.algorithm.hashAndSet;
 import java.util.HashMap;
 
 /**
- * 求数组中出现次数大于2/length的数
+ * 求数组中出现次数最多的数
  * @author pewee
  * https://leetcode-cn.com/problems/majority-element/
  * 思路1:遍历数据,把出现的每个数计入hashmap 时间,空间复杂度都是o(N)

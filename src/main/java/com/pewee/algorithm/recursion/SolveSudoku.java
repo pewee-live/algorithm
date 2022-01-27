@@ -45,7 +45,7 @@ public class SolveSudoku {
 		if(null == board || board.length != 9 ) {
 			return ;
 		}
-		doSolve(board,0,0);
+		doSolve0(board,0,0);
     }
 	
 	/**
@@ -56,6 +56,7 @@ public class SolveSudoku {
 	 * @param column
 	 * @return
 	 */
+	@Deprecated
 	private boolean doSolve(char[][] board,int row,int column) {
 		/**
 		 * 一行填满了,需要切换到下一行
@@ -90,6 +91,49 @@ public class SolveSudoku {
 		}
 		return true;
 	}
+	
+	/**
+	 * 递归回溯算法,使用DFS朴素枚举填入数字
+	 * 这里不再用双层循环,直接一个个格子填,填了后再往下递归,这种写法更好
+	 * row,column填入1-9
+	 * @param board
+	 * @param row
+	 * @param column
+	 * @return
+	 */
+	private boolean doSolve0(char[][] board,int row,int column) {
+		/**
+		 * 一行填满了,需要切换到下一行
+		 */
+		if (column  ==  9) {
+			row = row + 1;
+			column = 0;
+		}
+		
+		if (row == 9) {
+			return true;
+		}
+		//若为空,开始填
+		if (board[row][column] == '.') {
+			for (char k = '1'; k <= '9'; k++) {
+				if (isOk(board,row,column,k)) {
+					board[row][column] = k;
+					if (doSolve0(board, row , column + 1)) {
+						return true;
+					} else {
+						//本数字可放,但是后面无法填,方下一个
+						board[row][column] = '.';
+					}
+				} 
+			}
+			//本次循环所有数字都放不了的话返回失败
+			return false;
+		} else {
+			//有默认数字,那就换到下一个数字填
+			return doSolve0(board, row , column + 1);
+		}
+	}
+
 
 	private boolean isOk(char[][] board, int row0, int column0, char c) {
 		//本行没得和他重复的

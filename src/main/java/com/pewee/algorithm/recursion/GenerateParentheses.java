@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class GenerateParentheses {
 	public static void main(String[] args) {
-		List<String> generateParenthesis = new GenerateParentheses().generateParenthesis(3);
+		List<String> generateParenthesis = new GenerateParentheses().generateParenthesis(2);
 		
 		for (String string : generateParenthesis) {
 			System.out.println(string);
