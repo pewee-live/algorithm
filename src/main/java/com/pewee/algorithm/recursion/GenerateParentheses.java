@@ -39,7 +39,7 @@ public class GenerateParentheses {
     }
 	
 	private void validate(int left, int right, String string, ArrayList<String> ret) {
-		if (right < left ) {
+		if (right < left ) {//剪枝操作
 			return;
 		}
 		if (left == 0 && right == 0) {

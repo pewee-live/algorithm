@@ -14,19 +14,19 @@ public class Powxn {
 	}
 	
 	public double myPow(double x, int n) {
-		if(n == 0 ) {
+		if (n == 0 ) {
 			return 1;
 		}
-		if(n == 1) {
+		if (n == 1) {
 			return x;
 		}
-		if(n < 0) {
+		if (n < 0) {
 			if (n==-2147483648) {//In Java, -2147483648<=int<=2147483647, so when we multiply -2147483648 with -1 -> 2147483648 gives  undefined behaviour.
 				n=-2147483646; 
 			}  
 			return 1/myPow( x,  -n);
 		}
-		if(n%2 == 0) {
+		if (n%2 == 0) {
 			return myPow(x*x,n/2);
 		} else {
 			return myPow(x,n - 1) * x;
