@@ -38,6 +38,11 @@ public class Triangle {
 		return ret[0][0];
     }
 	
+	/**
+	 * 直接修改原list的数据
+	 * @param triangle
+	 * @return
+	 */
 	public int minimumTotal0(List<List<Integer>> triangle) {
 		//处理特殊结果,只有一层
 		if(triangle.size() == 1) {
