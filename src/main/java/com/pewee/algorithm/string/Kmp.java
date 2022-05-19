@@ -25,8 +25,7 @@ package com.pewee.algorithm.string;
 public class Kmp {
 	
 	public static void main(String[] args) {
-		int[] next = new Kmp().getNext("GTGTGCF");
-		System.out.println(next);
+		System.out.println(new Kmp().kmp("GTGTGCF","AAAGTGTGCFGcthgfafwesFSFGERHBGKIJYF"));
 	}
 	
 	public  int[] getNext (String p) {
@@ -52,10 +51,10 @@ public class Kmp {
 			while (j>0 && txt.charAt(i) != p.charAt(j)) {
 				j = next[j - 1];
 			}
-			if(txt.charAt(i) != p.charAt(j)) {
+			if(txt.charAt(i) == p.charAt(j)) {
 				j++;
 			}
-			if (j == p.length()) {
+			if (j == p.length() - 1) {
 				return i - j + 1;
 			}
 		}
